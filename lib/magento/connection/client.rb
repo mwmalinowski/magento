@@ -7,7 +7,14 @@ module Magento
 
       class << self
         def default
-          @@default ||= Magento::Connection::Client::XMLRPC.new(Magento::Configuration.default)
+          @@default ||= begin
+            configuration = Magento::Configuration.default
+            if configuration.wsdl_path and !configuration.xmlrpc_path
+              Magento::Connection::Client::Soap.new(configuration)
+            else
+              Magento::Connection::Client::XMLRPC.new(configuration)
+            end
+          end
         end
       end
 
