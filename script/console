@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require 'lib/magento'
+config = Magento::Configuration.new(:file_path => ARGV.shift)
+Magento.connection = Magento::Connection.new(config)
+
+require 'irb'
+require 'irb/completion'
+ARGV << '--simple-prompt'
+IRB.start

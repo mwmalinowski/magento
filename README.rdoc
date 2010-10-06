@@ -1,0 +1,4 @@
+= Magento
+
+A library for interfacing with Magento via XMLRPC.
+http://www.magentocommerce.com/support/magento_core_api
