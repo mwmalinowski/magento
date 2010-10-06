@@ -12,10 +12,10 @@ describe Magento::Connection::Client do
       Magento::Connection::Client.default.should be_a(Magento::Connection::Client::XMLRPC)
     end
 
-    it 'should return a Magento::Connection::Client::Soap instance if wsdl_path is specified in the configuration and xmlrpc_path is not' do
+    it 'should return a Magento::Connection::Client::SOAP instance if wsdl_path is specified in the configuration and xmlrpc_path is not' do
       configuration = mock(:configuration, :wsdl_path => '/wsdl', :xmlrpc_path => nil)
       Magento::Configuration.should_receive(:default).and_return(configuration)
-      Magento::Connection::Client.default.should be_a(Magento::Connection::Client::Soap)
+      Magento::Connection::Client.default.should be_a(Magento::Connection::Client::SOAP)
     end
   end
 end

@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../../../spec_helper'
 describe Magento::Connection::Client::XMLRPC do
   before(:each) do
     @soap_client = mock(:soap_client)
-    @client = Magento::Connection::Client::Soap.new(mock(:configuration))
+    @client = Magento::Connection::Client::SOAP.new(mock(:configuration))
     @client.should_receive(:raw).and_return(@soap_client)
   end
 

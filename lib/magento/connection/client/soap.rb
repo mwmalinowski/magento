@@ -3,7 +3,7 @@ require 'savon'
 module Magento
   class Connection
     module Client
-      class Soap
+      class SOAP
         include Magento::Connection::Client
 
         def login(username, api_key)

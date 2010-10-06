@@ -25,7 +25,7 @@ module Magento
       configuration = Magento::Configuration.new(:file_path => (options[:configuration_file_path]))
       client = case (options[:client_type] || :xmlrpc)
                  when :xmlrpc  then Magento::Connection::Client::XMLRPC.new(configuration)
-                 when :soap    then Magento::Connection::Client::Soap.new(configuration)
+                 when :soap    then Magento::Connection::Client::SOAP.new(configuration)
                end
 
       Magento.connection = Magento::Connection.new(configuration, client)

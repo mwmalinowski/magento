@@ -10,7 +10,7 @@ module Magento
           @@default ||= begin
             configuration = Magento::Configuration.default
             if configuration.wsdl_path and !configuration.xmlrpc_path
-              Magento::Connection::Client::Soap.new(configuration)
+              Magento::Connection::Client::SOAP.new(configuration)
             else
               Magento::Connection::Client::XMLRPC.new(configuration)
             end

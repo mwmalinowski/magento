@@ -18,7 +18,7 @@ module Magento
     module Client
       extend ActiveSupport::Autoload
 
-      autoload :Soap
+      autoload :SOAP
       autoload :XMLRPC
     end
   end
