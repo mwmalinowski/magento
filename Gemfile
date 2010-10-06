@@ -1,4 +1,5 @@
-gem 'activesupport', '~> 3.0.0'
+gem 'activesupport',  '~> 3.0.0'
+gem 'savon',          '~> 0.7.9'
 
 group :test do
   gem 'rspec',      '~> 2.0.0.beta.19'

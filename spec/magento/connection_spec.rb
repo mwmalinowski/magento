@@ -1,18 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Magento::Connection do
-  before(:each) do
-    @configuration = Magento::Configuration.new(
-      :username =>  'arnold.rothstein',
-      :api_key =>   'abc123',
-      :host =>      'magento.com',
-      :path =>      '/api',
-      :port =>      '1080'
-    )
-
-    @connection = Magento::Connection.new(@configuration)
-  end
-
   context '.scrub_method' do
     it 'should return a string' do
       Magento::Connection.scrub_method(:call).should == 'call'
@@ -35,23 +23,32 @@ describe Magento::Connection do
     end
   end
 
+  before(:each) do
+    @configuration = Magento::Configuration.new(
+      :username =>    'arnold.rothstein',
+      :api_key =>     'abc123',
+      :host =>        'magento.com',
+      :xmlrpc_path => '/api',
+      :port =>        '1080'
+    )
+
+    @client     = mock(:client)
+    @connection = Magento::Connection.new(@configuration, @client)
+  end
+
   context '#call' do
     it 'should delegate to call on the client and return the result' do
-      mock_client = mock(:client)
-      mock_client.should_receive(:call).with('login', 'arnold.rothstein', 'abc123').and_return('def456')
-      mock_client.should_receive(:call).with('call', 'def456', 'sample', 'a', '1').and_return('result')
-      @connection.should_receive(:client).twice.and_return(mock_client)
-      @connection.log_in
+      @client.should_receive(:login).with('arnold.rothstein', 'abc123').and_return('def456')
+      @client.should_receive(:call).with('def456', 'sample', 'a', '1').and_return('result')
+      @connection.login
       @connection.call('sample', 'a', '1').should == 'result'
     end
   end
 
-  context '#log_in' do
+  context '#login' do
     it 'should return the session ID returned from calling \'login\'' do
-      mock_client = mock(:client)
-      mock_client.should_receive(:call).with('login', 'arnold.rothstein', 'abc123').and_return('def456')
-      @connection.should_receive(:client).and_return(mock_client)
-      @connection.log_in.should == 'def456'
+      @client.should_receive(:login).with('arnold.rothstein', 'abc123').and_return('def456')
+      @connection.login.should == 'def456'
     end
   end
 
@@ -61,9 +58,8 @@ describe Magento::Connection do
     end
 
     it 'should return true if the connection was logged in' do
-      mock_client = mock(:client, :call => 'abc123')
-      @connection.should_receive(:client).and_return(mock_client)
-      @connection.log_in
+      @client.should_receive(:login).with('arnold.rothstein', 'abc123').and_return('def456')
+      @connection.login
       @connection.logged_in?.should be_true
     end
   end

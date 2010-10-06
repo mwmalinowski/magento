@@ -8,7 +8,20 @@ module Magento
   extend ActiveSupport::Autoload
 
   autoload :Configuration
+  autoload :Console
+
   autoload :Connection
+  class Connection
+    extend ActiveSupport::Autoload
+
+    autoload :Client
+    module Client
+      extend ActiveSupport::Autoload
+
+      autoload :Soap
+      autoload :XMLRPC
+    end
+  end
 
   autoload_under 'resource' do
     autoload :Customer

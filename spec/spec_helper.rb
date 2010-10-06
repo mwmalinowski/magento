@@ -10,7 +10,7 @@ module Magento
       end
 
       client = Magento.connection.send(:client)
-      client.should_receive(:call).with('call', SESSION_ID, options[:method], *options[:arguments]).
+      client.should_receive(:call).with(SESSION_ID, options[:method], *options[:arguments]).
         and_return(options[:response])
     end
   end

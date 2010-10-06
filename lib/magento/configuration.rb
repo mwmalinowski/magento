@@ -3,7 +3,8 @@ require 'yaml'
 module Magento
   class Configuration
     DEFAULT_OPTIONS = {
-      :path => '/api/xmlrpc',
+      :wsdl_path => '/api/soap/?wsdl',
+      :xmlrpc_path => '/api/xmlrpc',
       :port => '80'
     }
 
@@ -35,8 +36,12 @@ module Magento
       options[:host]
     end
 
-    def path
-      options[:path]
+    def wsdl_path
+      options[:wsdl_path]
+    end
+
+    def xmlrpc_path
+      options[:xmlrpc_path]
     end
 
     def port
