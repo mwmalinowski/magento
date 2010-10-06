@@ -1,6 +1,3 @@
-require 'xmlrpc/client'
-require 'savon'
-
 module Magento
   class Connection
     module Client
