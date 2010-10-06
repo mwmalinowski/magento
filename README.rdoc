@@ -1,5 +1,5 @@
 = Magento
 
-A Ruby interface for Magento via XMLRPC.
+A Ruby interface for Magento via XMLRPC or SOAP.
 
 See http://www.magentocommerce.com/support/magento_core_api.
