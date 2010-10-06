@@ -1,4 +1,5 @@
 = Magento
 
-A library for interfacing with Magento via XMLRPC.
-http://www.magentocommerce.com/support/magento_core_api
+A Ruby interface for Magento via XMLRPC.
+
+See http://www.magentocommerce.com/support/magento_core_api.
