@@ -16,7 +16,7 @@ module Magento
 
         private
           def raw
-            @raw ||= XMLRPC::Client.new(@configuration.host, @configuration.xmlrpc_path, @configuration.port)
+            @raw ||= ::XMLRPC::Client.new(@configuration.host, @configuration.xmlrpc_path, @configuration.port)
           end
       end
     end
