@@ -9,7 +9,7 @@ module Magento
 
     module InstanceMethods
       def update(new_attributes = {})
-        self.attributes = new_attributes.merge(attributes)
+        self.attributes = attributes.merge(new_attributes)
         save
       end
     end
