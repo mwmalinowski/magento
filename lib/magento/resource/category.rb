@@ -2,6 +2,7 @@ module Magento
   class Category
     include Magento::Connectable
     include Magento::Resource
+    include Magento::Deletable
 
     class << self
       def current_store
@@ -42,10 +43,6 @@ module Magento
 
     def move(options = {})
       call("#{resource_name}.move", resource_id, options[:parent_id], options[:after_id])
-    end
-
-    def delete
-      call("#{resource_name}.delete", resource_id)
     end
   end
 end
