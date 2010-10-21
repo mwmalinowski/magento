@@ -6,7 +6,7 @@ describe Magento::Listable do
   end
 
   context '.list' do
-    it 'should send \'customer.list\' to Magento and return an array of Customer objects' do
+    it 'should send \'test_listable.list\' to Magento and return an array of TestListable objects' do
       Magento::Test.stub_service :method => 'test_listable.list',
         :arguments => [{'lastname' => 'Rothstein'}],
         :response => [{'test_listable_id' => '1', 'firstname' => 'Arnold', 'lastname' => 'Rothstein'}]

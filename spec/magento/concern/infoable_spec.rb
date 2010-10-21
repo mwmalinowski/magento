@@ -6,7 +6,7 @@ describe Magento::Infoable do
   end
 
   context '.info' do
-    it 'should send \'customer.info\' to Magento and return a hash of attributes' do
+    it 'should send \'test_infoable.info\' to Magento and return a hash of attributes' do
       Magento::Test.stub_service :method => 'test_infoable.info',
         :arguments => ['1'],
         :response => {'test_infoable_id' => '1', 'firstname' => 'Arnold', 'lastname' => 'Rothstein', 'email' => 'arothstein@example.com'}

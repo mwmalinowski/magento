@@ -6,7 +6,7 @@ describe Magento::Creatable do
   end
 
   context '.create' do
-    it 'should send \'customer.create\' to Magento and return a Customer object' do
+    it 'should send \'test_creatable.create\' to Magento and return a TestCreatable object' do
       Magento::Test.stub_service :method => 'test_creatable.create',
         :arguments => [{'firstname' => 'Arnold', 'lastname' => 'Rothstein', 'email' => 'arothstein@example.com'}],
         :response => '1'

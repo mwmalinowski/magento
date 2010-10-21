@@ -6,7 +6,7 @@ describe Magento::Findable do
   end
 
   context '.find' do
-    it 'should send \'customer.info\' to Magento and return a Customer object' do
+    it 'should send \'test_findable.info\' to Magento and return a TestFindable object' do
       Magento::Test.stub_service :method => 'test_findable.info',
         :arguments => ['1'],
         :response => {'test_findable_id' => '1', 'firstname' => 'Arnold', 'lastname' => 'Rothstein', 'email' => 'arothstein@example.com'}

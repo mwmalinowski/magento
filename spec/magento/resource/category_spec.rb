@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Magento::Category do
   context '.current_store' do
-    it 'should send \'category.currentStore\' to Magento and return a the ID' do
+    it 'should send \'category.currentStore\' to Magento and return the ID' do
       Magento::Test.stub_service :method => 'category.currentStore',
         :arguments => [],
         :response => '123'
