@@ -24,6 +24,7 @@ module Magento
   end
 
   autoload_under 'resource' do
+    autoload :Category
     autoload :Customer
   end
 
