@@ -8,7 +8,7 @@ module Magento
       options = {}
 
       OptionParser.new do |opt|
-        opt.banner = 'Usage: console [configuration_file_path] [options]'
+        opt.banner = 'Usage: console [configuration file path] [options]'
 
         opt.on('-f', '--config-file [PATH]', String, 'Specify configuration file path') do |configuration_file_path|
           options[:configuration_file_path] = configuration_file_path
@@ -22,7 +22,7 @@ module Magento
         opt.parse!(ARGV)
       end
 
-      configuration = Magento::Configuration.new(:file_path => (options[:configuration_file_path]))
+      configuration = Magento::Configuration.new(:file_path => (options[:configuration_file_path] || ARGV.shift))
       client = case (options[:client_type] || :xmlrpc)
                  when :xmlrpc  then Magento::Connection::Client::XMLRPC.new(configuration)
                  when :soap    then Magento::Connection::Client::SOAP.new(configuration)
