@@ -26,6 +26,7 @@ module Magento
   autoload_under 'resource' do
     autoload :Category
     autoload :Customer
+    autoload :Product
   end
 
   autoload_under 'concern' do
@@ -39,6 +40,7 @@ module Magento
     autoload :Reloadable
     autoload :Resource
     autoload :Savable
+    autoload :StoreViewable
     autoload :Updatable
   end
 

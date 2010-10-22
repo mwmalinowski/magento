@@ -3,16 +3,9 @@ module Magento
     include Magento::Connectable
     include Magento::Resource
     include Magento::Deletable
+    include Magento::StoreViewable
 
     class << self
-      def current_store
-        call("#{resource_name}.currentStore")
-      end
-
-      def current_store=(store_view)
-        call("#{resource_name}.currentStore", store_view)
-      end
-
       def tree(options = {})
         call("#{resource_name}.tree", options[:parent_id], options[:store_view])
       end
