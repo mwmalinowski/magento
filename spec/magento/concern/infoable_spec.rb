@@ -14,5 +14,21 @@ describe Magento::Infoable do
       attributes = TestInfoable.info('1')
       attributes[:firstname].should == 'Arnold'
     end
+
+    it 'should call \'test_infoable.info\' with ID and store_view, if specified' do
+      Magento::Test.stub_service :method => 'test_infoable.info',
+        :arguments => ['1', '123'],
+        :response => {'email' => 'arothstein@example.com'}
+
+      TestInfoable.info '1', :store_view => '123'
+    end
+
+    it 'should call \'test_infoable.info\' with ID, file and store_view, if specified' do
+      Magento::Test.stub_service :method => 'test_infoable.info',
+        :arguments => ['1', 'thumb', '123'],
+        :response => {'email' => 'arothstein@example.com'}
+
+      TestInfoable.info '1', :file => 'thumb', :store_view => '123'
+    end
   end
 end

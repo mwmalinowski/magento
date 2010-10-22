@@ -3,6 +3,7 @@ module Magento
     include Magento::Connectable
     include Magento::Resource
     include Magento::StoreViewable
+    include Magento::Infoable
     include Magento::Deletable
 
     class << self
@@ -11,10 +12,6 @@ module Magento
         call("#{resource_name}.list", criteria, store_view).map do |attributes|
           self.new(attributes)
         end
-      end
-
-      def info(resource_id, options = {})
-        call("#{resource_name}.info", resource_id, options[:store_view])
       end
 
       def create(attributes)

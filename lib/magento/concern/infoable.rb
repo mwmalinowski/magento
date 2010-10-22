@@ -8,8 +8,8 @@ module Magento
     end
 
     module ClassMethods
-      def info(resource_id)
-        find(resource_id).attributes
+      def info(resource_id, options = {})
+        find(resource_id, options).attributes
       end
     end
   end

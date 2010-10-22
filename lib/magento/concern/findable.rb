@@ -7,8 +7,8 @@ module Magento
     end
 
     module ClassMethods
-      def find(resource_id)
-        self.new(resource_id_name => resource_id).reload
+      def find(resource_id, options = {})
+        self.new(resource_id_name => resource_id).reload(options)
       end
     end
   end

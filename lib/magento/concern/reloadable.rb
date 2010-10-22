@@ -8,9 +8,12 @@ module Magento
       include Magento::Resource
     end
 
+    ADDITIONAL_ARGUMENT_KEYS = [:file, :store_view]
+
     module InstanceMethods
-      def reload
-        self.attributes = call("#{resource_name}.info", resource_id)
+      def reload(options = {})
+        additional_arguments = options.values_at(*ADDITIONAL_ARGUMENT_KEYS).compact
+        self.attributes = call("#{resource_name}.info", resource_id, *additional_arguments)
         self
       end
     end

@@ -3,6 +3,7 @@ module Magento
     include Magento::Connectable
     include Magento::Resource
     include Magento::Deletable
+    include Magento::Infoable
     include Magento::StoreViewable
 
     class << self
@@ -12,10 +13,6 @@ module Magento
 
       def level(options = {})
         call("#{resource_name}.level", options[:website], options[:store_view], options[:parent_id])
-      end
-
-      def info(resource_id, options = {})
-        call("#{resource_name}.info", resource_id, options[:store_view])
       end
 
       def create(attributes)
