@@ -15,5 +15,3 @@ module Magento
     end
   end
 end
-
-#Dir[File.dirname(__FILE__) + '/magento/concern/shared_examples/*'].each{|file| require file}
