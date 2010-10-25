@@ -15,7 +15,7 @@ module Magento
         end
 
         opt.on('-c', '--client [TYPE]', [:xmlrpc, :soap],
-            'Specify client type. Possible values: xmlrpc, soap. Default value: xmlrpc') do |client_type|
+            'Specify client type. Possible values: soap, xmlrpc. Default value: soap') do |client_type|
           options[:client_type] = client_type
         end
 
@@ -23,7 +23,7 @@ module Magento
       end
 
       configuration = Magento::Configuration.new(:file_path => (options[:configuration_file_path] || ARGV.shift))
-      client = case (options[:client_type] || :xmlrpc)
+      client = case (options[:client_type] || :soap)
                  when :xmlrpc  then Magento::Connection::Client::XMLRPC.new(configuration)
                  when :soap    then Magento::Connection::Client::SOAP.new(configuration)
                end
