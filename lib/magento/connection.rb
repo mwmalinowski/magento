@@ -37,7 +37,7 @@ module Magento
     end
 
     def call(raw_method, *raw_arguments)
-      log_in unless logged_in?
+      login unless logged_in?
 
       method = Magento::Connection.scrub_method(raw_method)
       arguments = Magento::Connection.scrub_arguments(raw_arguments)

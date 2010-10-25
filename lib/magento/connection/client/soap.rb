@@ -6,12 +6,21 @@ module Magento
       class SOAP
         include Magento::Connection::Client
 
-        def login(username, api_key)
-          raw.login(username, api_key)
+        def login(api_user, api_key)
+          response = raw.login do |soap|
+            soap.body = {:api_user => api_user, :api_key => api_key}
+          end
+
+          response.to_hash[:login_response][:login_return]
         end
 
-        def call(session_id, method, *arguments)
-          raw.call(session_id, method, *arguments)
+        def call(session_id, resource_path, *arguments)
+          response = raw.call 'call' do |soap|
+            soap.body = {:session_id => session_id, :resource_path => resource_path,
+              :arguments => arguments}
+          end
+
+          response.to_hash[:call_response][:call_return]
         end
 
         private
