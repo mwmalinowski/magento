@@ -2,9 +2,9 @@ module Magento
   class Category
     include Magento::Connectable
     include Magento::Resource
-    include Magento::Deletable
-    include Magento::Infoable
     include Magento::StoreViewable
+    include Magento::Infoable
+    include Magento::Deletable
 
     class << self
       def tree(options = {})
