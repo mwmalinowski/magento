@@ -3,15 +3,14 @@ module Magento
     include Magento::Connectable
     include Magento::Resource
     include Magento::StoreViewable
+    include Magento::Listable
     include Magento::Infoable
     include Magento::Deletable
 
     class << self
       def list(criteria = {})
         store_view = criteria.delete(:store_view)
-        call("#{resource_name}.list", criteria, store_view).map do |attributes|
-          self.new(attributes)
-        end
+        super criteria, store_view
       end
 
       def create(attributes)

@@ -8,8 +8,8 @@ module Magento
     end
 
     module ClassMethods
-      def list(criteria = {})
-        call("#{resource_name}.list", criteria).map do |attributes|
+      def list(*arguments)
+        call("#{resource_name}.list", *arguments).map do |attributes|
           self.new(attributes)
         end
       end
