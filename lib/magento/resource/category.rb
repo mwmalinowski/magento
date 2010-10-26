@@ -1,9 +1,10 @@
 module Magento
   class Category
     include Magento::Connectable
-    include Magento::Resource
     include Magento::StoreViewable
     include Magento::Infoable
+    include Magento::Creatable
+    include Magento::Updatable
     include Magento::Deletable
 
     class << self
@@ -14,25 +15,24 @@ module Magento
       def level(options = {})
         call("#{resource_name}.level", options[:website], options[:store_view], options[:parent_id])
       end
-
-      def create(attributes)
-        parent_id = attributes.delete(:parent_id)
-        store_view = attributes.delete(:store_view)
-        resource_id = call("#{resource_name}.create", parent_id, attributes, store_view)
-        new(attributes.merge(resource_id_name => resource_id))
-      end
-    end
-
-    def update(new_attributes = {})
-      store_view = new_attributes.delete(:store_view)
-      attributes_without_id = self.attributes.dup
-      attributes_without_id.delete(resource_id_name)
-      call("#{resource_name}.update", resource_id, attributes_without_id.merge(new_attributes), store_view)
-      self.attributes = self.attributes.merge(new_attributes)
     end
 
     def move(options = {})
       call("#{resource_name}.move", resource_id, options[:parent_id], options[:after_id])
     end
+
+    private
+      def create_arguments
+        attributes_subset = attributes.dup
+        parent_id = attributes_subset.delete(:parent_id)
+        store_view = attributes_subset.delete(:store_view)
+        [parent_id, attributes_subset, store_view]
+      end
+
+      def update_arguments
+        attributes_subset = attributes_without_id
+        store_view = attributes_subset.delete(:store_view)
+        [attributes_subset, store_view]
+      end
   end
 end

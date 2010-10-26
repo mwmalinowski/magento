@@ -11,9 +11,9 @@ module Magento
     module InstanceMethods
       def save
         if resource_id
-          call("#{resource_name}.update", resource_id, attributes_without_id)
+          call("#{resource_name}.update", resource_id, *update_arguments)
         else
-          resource_id = call("#{resource_name}.create", attributes_without_id)
+          resource_id = call("#{resource_name}.create", *create_arguments)
           attributes[resource_id_name] = resource_id
         end
 
@@ -21,6 +21,14 @@ module Magento
       end
 
       private
+        def create_arguments
+          [attributes]
+        end
+
+        def update_arguments
+          [attributes_without_id]
+        end
+
         def attributes_without_id
           new_attributes = attributes.dup
           new_attributes.delete(resource_id_name)
