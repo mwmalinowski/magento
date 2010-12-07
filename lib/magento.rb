@@ -26,6 +26,7 @@ module Magento
   autoload_under 'resource' do
     autoload :Category
     autoload :Customer
+    autoload :CustomerAddress
     autoload :Product
   end
 

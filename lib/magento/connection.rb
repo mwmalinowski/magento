@@ -12,10 +12,10 @@ module Magento
       end
 
       def scrub_arguments(arguments)
-        arguments.map do |argument|
-          argument.is_a?(Hash) ?
-            argument.inject({}){|hash, pair| hash[pair[0].to_s] = pair[1].to_s; hash} :
-            argument.to_s
+        case arguments
+        when Hash then arguments.inject({}){|hash, pair| hash[pair[0].to_s] = scrub_arguments(pair[1]); hash}
+        when Array then arguments.map{|item| scrub_arguments(item)}
+        else arguments.to_s
         end
       end
 

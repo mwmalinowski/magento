@@ -15,6 +15,10 @@ describe Magento::Connection do
     it 'should stringify any included hashes' do
       Magento::Connection.scrub_arguments([:abc, {:a => 2}]).should == ['abc', {'a' => '2'}]
     end
+
+    it 'should not stringify arrays within a hash, but it should strinfigy the array entries' do
+      Magento::Connection.scrub_arguments([:abc, {:a => [2, 3]}]).should == ['abc', {'a' => ['2', '3']}]
+    end
   end
 
   context '.scrub_response' do
